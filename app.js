@@ -8,7 +8,7 @@ import { renderAthletesList } from "./help-functions.js";
 let miamiHeatRoster = [];
 
 function getMiamiRoster() {
-	fetch('http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/Miami/roster')
+	fetch('http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/mia/roster')
 	.then(res => res.json())
 	.then((dataRaw) => {
 
@@ -19,9 +19,14 @@ function getMiamiRoster() {
 				lastName: athlete.lastName,
 				jersey: athlete.jersey,
 				position: athlete.position.name,
+				height: athlete.displayHeight.slice(0,4).replace(" ",""),
+				weight: athlete.weight,
+				dob: athlete.dateOfBirth.slice(0,10).replaceAll("-","/"),
+				country: athlete.birthPlace.country,
 				photoUrl: `https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/${athlete.id}.png&w=350&h=254`,
 			};
 		});
+		console.log(dataRaw);
 		console.log(miamiHeatRoster);
 		renderAthletesList(miamiHeatRoster);
 	})

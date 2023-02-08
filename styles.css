@@ -1,8 +1,78 @@
 html {
-    background-color: rgb(51, 51, 51);
+    background-color: rgb(51, 51, 51);    
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#roster-container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 30px;
+    list-style: none;
 }
 
 img {
-    -webkit-filter: grayscale(25%);
-    filter: grayscale(25%);
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(70%);
+    aspect-ratio: 160/115;
+    width: 130%;
+}
+
+img:hover {
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%);
+    animation-name: colorchange;
+    animation-duration: 0.3s;
+}
+
+@keyframes colorchange {
+    0% {
+        filter: grayscale(60%);
+    }
+    25% {
+        filter: grayscale(45%);
+    }
+    50% {
+        filter: grayscale(30%);
+    }
+    75% {
+        filter: grayscale(15%);
+    }
+    100% {
+        filter: grayscale(00%);
+    }
+}
+
+.player-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    border-radius: 10px;
+    background-color: rgb(27, 27, 27);
+    width: 300px;
+    height: 400px;
+    overflow: hidden;
+}
+
+.player-name {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 30px;
+    margin: 20px;
+}
+
+.player-card:hover {
+    color: rgb(255, 132, 0);
 }

@@ -15,10 +15,16 @@ const createAthletesListElement = (miamiHeatRoster) => {
 
 const createAthleteCardElement = (athlete) => {
     const athleteCardElem = document.createElement("li");
+    athleteCardElem.classList.add("player-card");
 
     const athleteImg = document.createElement("img");
     athleteImg.src = athlete.photoUrl;
     athleteCardElem.appendChild(athleteImg);
+
+    const athleteName = document.createElement("strong");
+    athleteName.innerText = athlete.name + " " + athlete.lastName;
+    athleteName.classList.add("player-name");
+    athleteCardElem.appendChild(athleteName);
 
     return athleteCardElem;
 }
