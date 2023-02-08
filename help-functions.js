@@ -21,6 +21,11 @@ const createAthleteCardElement = (athlete) => {
     athleteImg.src = athlete.photoUrl;
     athleteCardElem.appendChild(athleteImg);
 
+    const athleteJersey = document.createElement("strong");
+    athleteJersey.innerText = athlete.jersey;
+    athleteJersey.classList.add("player-jersey");
+    athleteCardElem.appendChild(athleteJersey);
+
     const athleteName = document.createElement("strong");
     athleteName.innerText = athlete.name + " " + athlete.lastName;
     athleteName.classList.add("player-name");

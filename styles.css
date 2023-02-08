@@ -53,6 +53,7 @@ img:hover {
 }
 
 .player-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -65,14 +66,22 @@ img:hover {
     width: 300px;
     height: 400px;
     overflow: hidden;
+    font-family: 'Bebas Neue', cursive;
 }
 
 .player-name {
-    font-family: 'Bebas Neue', cursive;
+    
     font-size: 30px;
     margin: 20px;
 }
 
 .player-card:hover {
     color: rgb(255, 132, 0);
+}
+
+.player-jersey {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 60px;
 }
