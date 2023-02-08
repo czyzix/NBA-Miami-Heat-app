@@ -1,0 +1,8 @@
+html {
+    background-color: rgb(51, 51, 51);
+}
+
+img {
+    -webkit-filter: grayscale(25%);
+    filter: grayscale(25%);
+}
