@@ -15,8 +15,8 @@ function getMiamiRoster() {
 		miamiHeatRoster = dataRaw.athletes.map((athlete) => {
 			return {
 				id: athlete.id,
-				name: athlete.firstName,
-				lastName: athlete.lastName,
+				name: athlete.firstName.toUpperCase(),
+				lastName: athlete.lastName.toUpperCase(),
 				jersey: athlete.jersey,
 				position: athlete.position.name,
 				height: athlete.displayHeight.slice(0,4).replace(" ",""),

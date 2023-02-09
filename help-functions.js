@@ -17,19 +17,31 @@ const createAthleteCardElement = (athlete) => {
     const athleteCardElem = document.createElement("li");
     athleteCardElem.classList.add("player-card");
 
+    const anchorElement = document.createElement("a");
+    anchorElement.href = `https://www.nba.com/heat/roster`;
+
     const athleteImg = document.createElement("img");
+    athleteImg.classList.add("player-photo");
     athleteImg.src = athlete.photoUrl;
-    athleteCardElem.appendChild(athleteImg);
+    anchorElement.appendChild(athleteImg);
 
     const athleteJersey = document.createElement("strong");
     athleteJersey.innerText = athlete.jersey;
     athleteJersey.classList.add("player-jersey");
-    athleteCardElem.appendChild(athleteJersey);
+    anchorElement.appendChild(athleteJersey);
 
     const athleteName = document.createElement("strong");
     athleteName.innerText = athlete.name + " " + athlete.lastName;
     athleteName.classList.add("player-name");
-    athleteCardElem.appendChild(athleteName);
+    anchorElement.appendChild(athleteName);
+
+    const athletePosition = document.createElement("p");
+    athletePosition.innerText = athlete.position;
+    athletePosition.classList.add("player-position");
+    anchorElement.appendChild(athletePosition);
+
+    
+    athleteCardElem.appendChild(anchorElement);
 
     return athleteCardElem;
 }

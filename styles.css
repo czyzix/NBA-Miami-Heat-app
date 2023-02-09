@@ -1,5 +1,11 @@
-html {
-    background-color: rgb(51, 51, 51);    
+:root {
+    /* dark mode colors */
+    --grey: rgb(35, 35, 35);
+    --very-dark-grey: rgb(12, 12, 12);
+    --black: rgb(0,0,0);
+    --white: rgb(255,255,255);
+    --orange: rgb(255, 72, 0);
+
 }
 
 * {
@@ -8,9 +14,47 @@ html {
     padding: 0;
 }
 
-#roster-container {
+body {
+    background-color: var(--grey);
+    font-family: 'Bebas Neue', cursive;   
+}
+
+
+
+header {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: rgb(22, 22, 22);
+    color: var(--white);
+    box-shadow: 0px 0px 15px 0px var(--black);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     max-width: 1300px;
     margin: 0 auto;
+    padding: 0px 50px;
+}
+
+#mia-logo {
+    width: 80px;
+}
+
+header button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--white);
+    font-size: 16px;
+}
+
+#roster-container {
+    margin: 0 auto;
+    padding: 50px;
+    max-width: 1300px;
 }
 
 ul {
@@ -20,21 +64,23 @@ ul {
     list-style: none;
 }
 
-img {
+/* ---- PLAYERS CARDS ---- */
+
+.player-photo {
     -webkit-filter: grayscale(100%);
     filter: grayscale(70%);
     aspect-ratio: 160/115;
-    width: 130%;
+    width: 140%;
 }
 
-img:hover {
+.player-photo:hover {
     -webkit-filter: grayscale(0%);
     filter: grayscale(0%);
-    animation-name: colorchange;
+    animation-name: playerColor;
     animation-duration: 0.3s;
 }
 
-@keyframes colorchange {
+@keyframes playerColor {
     0% {
         filter: grayscale(60%);
     }
@@ -52,36 +98,81 @@ img:hover {
     }
 }
 
-.player-card {
+li {
+    overflow: hidden;
+}
+
+li a {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    margin: 0 auto;
-    color: white;
+    color: var(--white);
+    text-decoration: none;
+    
+}
+
+li a:hover {
+    cursor: pointer;
+}
+
+.player-card {
+    height: 100%;
     border-radius: 10px;
-    background-color: rgb(27, 27, 27);
-    width: 300px;
-    height: 400px;
-    overflow: hidden;
-    font-family: 'Bebas Neue', cursive;
+    background-color: var(--very-dark-grey);
+    font-family: 'Bebas Neue', cursive;   
 }
 
 .player-name {
-    
+    margin-top: 20px;
     font-size: 30px;
-    margin: 20px;
 }
 
-.player-card:hover {
-    color: rgb(255, 132, 0);
+.player-position {
+    margin-bottom: 20px;
+    font-size: 20px;
 }
 
 .player-jersey {
     position: absolute;
-    right: 20px;
+    right: 15px;
     top: 10px;
     font-size: 60px;
+    color: var(--grey);
+}
+
+.player-card:hover .player-jersey {
+    color: var(--white);
+    animation-name: colorChangeJersey;
+    animation-duration: 0.7s;
+}
+
+@keyframes colorChangeJersey {
+    from {color: var(--grey);}
+    to {color: var(--white)}
+}
+
+.player-card:hover .player-name {
+    color: var(--orange);
+}
+
+/* ---- MEDIA QUERIES ---- */
+
+@media only screen and (max-width: 1100px) {
+    ul {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media only screen and (max-width: 830px) {
+    ul {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (max-width: 560px) {
+    ul {
+        grid-template-columns: 1fr;
+    }
 }
