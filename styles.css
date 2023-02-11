@@ -4,8 +4,8 @@
     --dark-grey: rgb(24, 24, 24);
     --black: rgb(0,0,0);
     --white: rgb(255,255,255);
-    --orange: rgb(255, 123, 0);
-    --red: rgb(177, 51, 51);
+    --orange: rgb(249, 160, 27);
+    --red: rgb(152, 0, 46);
 
 }
 
@@ -96,7 +96,7 @@ ul {
     width: 140%;
 }
 
-.player-photo:hover {
+.player-card:hover .player-photo {
     -webkit-filter: grayscale(0%);
     filter: grayscale(0%);
     animation-name: playerColor;
