@@ -19,8 +19,6 @@ body {
     font-family: 'Bebas Neue', cursive;   
 }
 
-
-
 /* ---- HEADER ---- */
 
 header {
@@ -223,6 +221,7 @@ li a:hover {
 }
 
 /* ---- LIGHT MODE ---- */
+
 body.light {
     --lighter: rgb(255, 255, 255);
     --darker: rgb(238, 238, 238);
@@ -252,8 +251,6 @@ body.dark {
 body.dark .icon {
     transform: translateX(0px);
 }
-
-
 
 /* ---- MEDIA QUERIES ---- */
 
