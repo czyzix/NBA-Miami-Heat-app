@@ -30,15 +30,19 @@ const createAthleteCardElement = (athlete) => {
     athleteJersey.classList.add("player-jersey");
     anchorElement.appendChild(athleteJersey);
 
+    const athleteTextElem = document.createElement("div");
+    athleteTextElem.classList.add("card-text-container");
+    anchorElement.appendChild(athleteTextElem);
+
     const athleteName = document.createElement("strong");
     athleteName.innerText = athlete.name + " " + athlete.lastName;
     athleteName.classList.add("player-name");
-    anchorElement.appendChild(athleteName);
+    athleteTextElem.appendChild(athleteName);
 
     const athletePosition = document.createElement("p");
     athletePosition.innerText = athlete.position;
     athletePosition.classList.add("player-position");
-    anchorElement.appendChild(athletePosition);
+    athleteTextElem.appendChild(athletePosition);
 
     
     athleteCardElem.appendChild(anchorElement);
