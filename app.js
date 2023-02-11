@@ -6,6 +6,8 @@
 import { renderAthletesList } from "./help-functions.js";
 
 let miamiHeatRoster = [];
+let query = "";
+let position = "";
 
 function getMiamiRoster() {
 	fetch('http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/mia/roster')
@@ -35,3 +37,24 @@ function getMiamiRoster() {
 
 getMiamiRoster();
 
+function filterMiamiRoster() {
+	const filteredAthletes = miamiHeatRoster.filter((athlete) => {
+		return (
+			(athlete.name.toLowerCase().includes(query) ||
+			athlete.lastName.toLowerCase().includes(query)) &&
+			(!position || athlete.position === position)
+		);
+	});
+
+	renderAthletesList(filteredAthletes);
+};
+
+document.querySelector("#query").addEventListener("input", (e) => {
+	query = e.target.value.toLowerCase().trim();
+	filterMiamiRoster();
+});
+
+document.querySelector("#position").addEventListener("change", (e) => {
+	position = e.target.value;
+	filterMiamiRoster();
+});
