@@ -1,12 +1,11 @@
 :root {
-    /* dark mode colors */
-    --grey: rgb(41, 41, 41);
-    --dark-grey: rgb(24, 24, 24);
-    --black: rgb(0,0,0);
-    --white: rgb(255,255,255);
-    --orange: rgb(249, 160, 27);
-    --red: rgb(152, 0, 46);
-
+    --lighter: rgb(41, 41, 41);
+    --darker: rgb(24, 24, 24);
+    --text-second: rgb(0,0,0);
+    --text-first: rgb(255,255,255);
+    --shadow: rgb(0,0,0);
+    --secondary: rgb(249, 160, 27);
+    --primary: rgb(152, 0, 46);
 }
 
 * {
@@ -16,9 +15,11 @@
 }
 
 body {
-    background-color: var(--grey);
+    background-color: var(--lighter);
     font-family: 'Bebas Neue', cursive;   
 }
+
+
 
 /* ---- HEADER ---- */
 
@@ -26,9 +27,9 @@ header {
     max-width: 100%;
     margin: 0 auto;
     padding: 10px;
-    background-color: var(--dark-grey);
-    color: var(--white);
-    box-shadow: 0px 0px 15px 0px var(--black);
+    background-color: var(--darker);
+    color: var(--text-first);
+    box-shadow: 0px 0px 15px 0px var(--shadow);
 }
 
 .header-content {
@@ -45,12 +46,37 @@ header {
     width: 80px;
 }
 
+#color-mode-container{
+    position: relative;
+}
+
+#theme-mode {
+    position: relative;
+    bottom: 4px;
+    right: 4px;
+}
+
 header button {
-    background: none;
-    border: none;
     cursor: pointer;
-    color: var(--white);
-    font-size: 16px;
+    outline-width: 5px;
+    position: relative;
+    border-radius: 40px;
+    background-color: var(--darker);
+    border: solid 2px var(--primary);
+    width: 55px;
+    height: 30px;
+}
+
+.icon {
+    display: block;
+    position: relative;
+    content: "";
+    background-color: var(--primary);
+    border-radius: 100%;
+    height: 20px;
+    width: 20px;
+    margin-left: 4px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 /* ---- FILTERS ---- */
@@ -66,12 +92,12 @@ header button {
 
 #query, #position {
     display: block;
-    background-color: var(--white);
+    background-color: var(--text-first);
     border: none;
     border-radius: 5px;
     padding: 15px;
-    background-color: var(--dark-grey);
-    color: var(--white);
+    background-color: var(--darker);
+    color: var(--text-first);
 }
 
 /* ---- PLAYERS CARDS ---- */
@@ -131,7 +157,7 @@ li a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: var(--white);
+    color: var(--text-first);
     text-decoration: none;
 }
 
@@ -142,7 +168,7 @@ li a:hover {
 .player-card {
     height: 100%;
     border-radius: 10px;
-    background-color: var(--dark-grey);
+    background-color: var(--darker);
     font-family: 'Bebas Neue', cursive;   
 }
 
@@ -161,40 +187,73 @@ li a:hover {
     right: 15px;
     top: 10px;
     font-size: 60px;
-    color: var(--grey);
+    color: var(--lighter);
 }
 
 .card-text-container {
-    background-color: var(--red);
+    background-color: var(--primary);
     text-align: center;
     width: 100%;
     padding-top: 20px;
 }
 
 .player-card:hover .player-jersey {
-    color: var(--white);
+    color: var(--text-first);
     animation-name: colorChangeJersey;
     animation-duration: 0.7s;
 }
 
 @keyframes colorChangeJersey {
-    from {color: var(--grey);}
-    to {color: var(--white)}
+    from {color: var(--lighter);}
+    to {color: var(--text-first)}
 }
 
 .player-card:hover .card-text-container {
-    background-color: var(--orange);
-    color: var(--dark-grey);
+    background-color: var(--secondary);
+    color: var(--darker);
     animation-name: colorChangeCardText;
     animation-duration: 0.7s;
 }
 
 @keyframes colorChangeCardText {
-    from {color: var(--white);}
-    to {color: var(--dark-grey)}
-    from {background-color: var(--red)};
-    to {background-color: var(--orange)};
+    from {color: var(--text-first);}
+    to {color: var(--darker)}
+    from {background-color: var(--primary)};
+    to {background-color: var(--secondary)};
 }
+
+/* ---- LIGHT MODE ---- */
+body.light {
+    --lighter: rgb(255, 255, 255);
+    --darker: rgb(238, 238, 238);
+    --text-second: rgb(255,255,255);
+    --text-first: rgb(0,0,0);
+    --shadow: rgb(153, 153, 153);
+    --secondary: rgb(152, 0, 46);
+    --primary: rgb(249, 160, 27);
+}
+
+body.light .icon {
+    transform: translateX(25px);
+}
+
+/* ---- DARK MODE ---- */
+
+body.dark {
+    --lighter: rgb(41, 41, 41);
+    --darker: rgb(24, 24, 24);
+    --text-second: rgb(0,0,0);
+    --text-first: rgb(255,255,255);
+    --shadow: rgb(0,0,0);
+    --secondary: rgb(249, 160, 27);
+    --primary: rgb(152, 0, 46);
+}
+
+body.dark .icon {
+    transform: translateX(0px);
+}
+
+
 
 /* ---- MEDIA QUERIES ---- */
 
@@ -224,3 +283,19 @@ li a:hover {
         grid-template-columns: 1fr;
     }
 }
+
+@media (prefers-color-scheme: light) {
+    body {
+        --lighter: rgb(255, 255, 255);
+        --darker: rgb(238, 238, 238);
+        --text-second: rgb(255,255,255);
+        --text-first: rgb(0,0,0);
+        --shadow: rgb(153, 153, 153);
+        --secondary: rgb(152, 0, 46);
+        --primary: rgb(249, 160, 27);
+    }
+
+    .icon {
+        transform: translateX(25px);
+    }
+};

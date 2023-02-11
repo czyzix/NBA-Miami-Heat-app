@@ -58,3 +58,28 @@ document.querySelector("#position").addEventListener("change", (e) => {
 	position = e.target.value;
 	filterMiamiRoster();
 });
+
+const switchButton = document.querySelector("#theme-btn");
+let theme = localStorage.getItem("theme");
+
+switchButton.addEventListener("click", () => {
+    if (theme === "light") {
+        document.querySelector("body").classList.remove("light");
+        document.querySelector("body").classList.add("dark");
+        theme = "dark";
+    } else {
+        document.querySelector("body").classList.remove("dark");
+        document.querySelector("body").classList.add("light");
+        theme = "light";
+    }
+
+    localStorage.setItem("theme", theme);
+});
+
+if (theme === "dark") {
+    document.querySelector("body").classList.add("dark");
+}
+
+if (theme === "light") {
+    document.querySelector("body").classList.add("light");
+}
