@@ -8,6 +8,7 @@ import { renderAthletesList } from "./help-functions.js";
 let miamiHeatRoster = [];
 let query = "";
 let position = "";
+let namesAndLastNamesList = [];
 
 function getMiamiRoster() {
 	fetch('http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/mia/roster')
@@ -17,7 +18,7 @@ function getMiamiRoster() {
 		miamiHeatRoster = dataRaw.athletes.map((athlete) => {
 			return {
 				id: athlete.id,
-				name: athlete.firstName.toUpperCase(),
+				name: athlete.firstName,
 				lastName: athlete.lastName.toUpperCase(),
 				jersey: athlete.jersey,
 				position: athlete.position.name,
@@ -31,9 +32,28 @@ function getMiamiRoster() {
 		console.log(dataRaw);
 		console.log(miamiHeatRoster);
 		renderAthletesList(miamiHeatRoster);
+		miamiHeatRoster.forEach(getPlayerId);
 	})
 	.catch(err => console.error(err));
 }
+
+function getPlayerId(athlete) {
+	fetch(`https://www.balldontlie.io/api/v1/players?search=${athlete.lastName}`)
+	.then(res => res.json())
+	.then((dataRaw) => {
+		/* console.log(dataRaw.data) */
+		/* if (dataRaw.data.player.first_name.toLowerCase() === athlete.name.toLowerCase()) {
+			console.log("dupa");
+		} */
+		/* console.log(dataRaw.data[0].first_name); */
+
+		for (let i = 0; i <= dataRaw.data.length; i++) {
+			if ((dataRaw.data[i].first_name === athlete.name) && (dataRaw.data[i].team.abbreviation === "MIA")) {
+				return console.log(dataRaw.data[i].first_name)
+			}
+		}
+	})
+};
 
 getMiamiRoster();
 
@@ -78,8 +98,8 @@ switchButton.addEventListener("click", () => {
 
 if (theme === "dark") {
     document.querySelector("body").classList.add("dark");
-}
+};
 
 if (theme === "light") {
     document.querySelector("body").classList.add("light");
-}
+};
