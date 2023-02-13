@@ -267,7 +267,7 @@ body.dark .icon {
     }
 }
 
-@media only screen and (max-width: 560px) {
+@media only screen and (max-width: 550px) {
     
     .header-content, .filters {
         flex-direction: column;
