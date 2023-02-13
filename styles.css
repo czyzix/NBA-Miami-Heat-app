@@ -118,6 +118,7 @@ ul {
     filter: grayscale(70%);
     aspect-ratio: 160/115;
     width: 140%;
+    z-index: 1;
 }
 
 .player-card:hover .player-photo {
