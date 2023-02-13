@@ -40,20 +40,23 @@ export const renderRoster = () => {
             });
     
             console.log(miamiHeatRoster);
-            miamiHeatRoster.forEach(getPlayerId);
-            renderAthletesList(miamiHeatRoster);	
+            Promise.all(miamiHeatRoster.map(getPlayerId))
+            .then(() => {renderAthletesList(miamiHeatRoster)} );
         }) 
         .catch(err => console.error(err));
     } 
     
     function getPlayerId(athlete) {
-        fetch(`https://www.balldontlie.io/api/v1/players?search=${athlete.lastName}`)
+        return fetch(`https://www.balldontlie.io/api/v1/players?search=${athlete.lastName}`)
         .then(res => res.json())
         .then((dataRaw) => {
             for (let i = 0; i <= dataRaw.data.length; i++) {
-                if ((dataRaw.data[i].first_name === athlete.name) && (dataRaw.data[i].team.abbreviation === "MIA")) {
-                    return athlete.statsId = dataRaw.data[i].id	
-                };
+
+                if (dataRaw.data[i]) {
+                    if ((dataRaw.data[i].first_name === athlete.name) && (dataRaw.data[i].team.abbreviation === "MIA")) {
+                        return athlete.statsId = dataRaw.data[i].id	
+                    };
+                }
             };
         });
     };

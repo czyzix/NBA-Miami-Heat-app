@@ -12,14 +12,13 @@ export const renderPlayerDetails = () => {
     };
 
     const searchParams = new URLSearchParams(window.location.search);
-    let statsId = searchParams.get("athlete");
+    let dupa = searchParams.get("athlete");
+    console.log(dupa);
 
-    let playerStats = [];
-
-    fetch(`https://www.balldontlie.io/api/v1/season_averages?season=${currentSeason}&player_ids[]=${statsId}`)
+    /* fetch(`https://www.balldontlie.io/api/v1/season_averages?season=${currentSeason}&player_ids[]=${athlete.statsId}`)
     .then(res => res.json())
     .then((dataRaw) => {
 
         console.log(dataRaw)
-    })
+    }) */
 };
