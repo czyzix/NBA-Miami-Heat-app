@@ -18,7 +18,7 @@ const createAthleteCardElement = (athlete) => {
     athleteCardElem.classList.add("player-card");
 
     const anchorElement = document.createElement("a");
-    anchorElement.href = `https://www.nba.com/heat/roster`;
+    anchorElement.href = `?athlete=${athlete.statsId}`;
 
     const athleteImg = document.createElement("img");
     athleteImg.classList.add("player-photo");

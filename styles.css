@@ -253,6 +253,10 @@ body.dark .icon {
     transform: translateX(0px);
 }
 
+.hide {
+    display: none;
+}
+
 /* ---- MEDIA QUERIES ---- */
 
 @media only screen and (max-width: 1100px) {
