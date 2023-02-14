@@ -34,7 +34,6 @@ export const renderRoster = () => {
                     height: athlete.displayHeight.slice(0,4).replace(" ",""),
                     weight: athlete.weight,
                     dob: athlete.dateOfBirth.slice(0,10).replaceAll("-","/"),
-                    country: athlete.birthPlace.country,
                     photoUrl: `https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/${athlete.id}.png&w=350&h=254`,
                 };
             });
@@ -51,12 +50,11 @@ export const renderRoster = () => {
         .then(res => res.json())
         .then((dataRaw) => {
             for (let i = 0; i <= dataRaw.data.length; i++) {
-
                 if (dataRaw.data[i]) {
                     if ((dataRaw.data[i].first_name === athlete.name) && (dataRaw.data[i].team.abbreviation === "MIA")) {
                         return athlete.statsId = dataRaw.data[i].id	
                     };
-                }
+                };
             };
         });
     };

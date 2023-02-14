@@ -18,7 +18,7 @@ const createAthleteCardElement = (athlete) => {
     athleteCardElem.classList.add("player-card");
 
     const anchorElement = document.createElement("a");
-    anchorElement.href = `?athlete=${athlete.statsId}`;
+    anchorElement.href = `?athlete=${athlete.statsId}&name=${athlete.name}&lastname=${athlete.lastName}`;
 
     const athleteImg = document.createElement("img");
     athleteImg.classList.add("player-photo");
