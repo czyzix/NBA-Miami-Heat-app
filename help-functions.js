@@ -51,7 +51,7 @@ const createAthleteCardElement = (athlete) => {
 }
 
 export const renderPlayerCard = (playerInfo) => {
-    const rootElement = document.querySelector("#roster-container");
+    const rootElement = document.querySelector("#player-container");
     rootElement.innerHTML = "";
     rootElement.appendChild(createPlayerCardInfo(playerInfo));
 };
