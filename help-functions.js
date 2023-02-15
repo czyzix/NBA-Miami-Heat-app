@@ -15,19 +15,19 @@ const createAthletesListElement = (miamiHeatRoster) => {
 
 const createAthleteCardElement = (athlete) => {
     const athleteCardElem = document.createElement("li");
-    athleteCardElem.classList.add("player-card");
+    athleteCardElem.classList.add("athlete-card");
 
     const anchorElement = document.createElement("a");
     anchorElement.href = `?athlete=${athlete.statsId}&name=${athlete.name}&lastname=${athlete.lastName}`;
 
     const athleteImg = document.createElement("img");
-    athleteImg.classList.add("player-photo");
+    athleteImg.classList.add("athlete-photo");
     athleteImg.src = athlete.photoUrl;
     anchorElement.appendChild(athleteImg);
 
     const athleteJersey = document.createElement("strong");
     athleteJersey.innerText = athlete.jersey;
-    athleteJersey.classList.add("player-jersey");
+    athleteJersey.classList.add("athlete-jersey");
     anchorElement.appendChild(athleteJersey);
 
     const athleteTextElem = document.createElement("div");
@@ -36,12 +36,12 @@ const createAthleteCardElement = (athlete) => {
 
     const athleteName = document.createElement("strong");
     athleteName.innerText = athlete.name + " " + athlete.lastName;
-    athleteName.classList.add("player-name");
+    athleteName.classList.add("athlete-name");
     athleteTextElem.appendChild(athleteName);
 
     const athletePosition = document.createElement("p");
     athletePosition.innerText = athlete.position;
-    athletePosition.classList.add("player-position");
+    athletePosition.classList.add("athlete-position");
     athleteTextElem.appendChild(athletePosition);
 
     
@@ -49,3 +49,26 @@ const createAthleteCardElement = (athlete) => {
 
     return athleteCardElem;
 }
+
+export const renderPlayerCard = (filteredPlayer, playerStats) => {
+    const rootElement = document.querySelector("#roster-container");
+    rootElement.innerHTML = "";
+    rootElement.appendChild(createPlayerCardInfo(filteredPlayer));
+    rootElement.appendChild(createPlayerCardInfo(playerStats));
+};
+
+const createPlayerCardInfo = (filteredPlayer) => {
+    const playerCardElem = document.createElement("div");
+    playerCardElem.classList.add("player-card");
+
+    const playerImg = document.createElement("img");
+    playerImg.classList.add("player-photo");
+    playerImg.src = filteredPlayer.photoUrl;
+    playerCardElem.appendChild(playerImg);
+
+    const playerName = document.createElement("strong");
+    playerName.innerText = filteredPlayer.name;
+    playerCardElem.appendChild(playerName);
+
+    return playerCardElem;
+};

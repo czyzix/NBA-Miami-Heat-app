@@ -1,10 +1,12 @@
+import { renderPlayerCard } from "./help-functions.js";
+
 export const renderPlayerDetails = () => {
 
     let currentSeason;
+    
     let playerStats = [];
     let miamiHeatRoster = [];
     let filteredPlayer = [];
-    let playerFullInfo = [];
 
     // getting current NBA season year
     var date = new Date();
@@ -21,7 +23,7 @@ export const renderPlayerDetails = () => {
     let name = params.get("name");
     let lastname = params.get("lastname");
 
-    function getPlayerStats() {
+    /* function getPlayerStats() {
         fetch(`https://www.balldontlie.io/api/v1/season_averages?season=${currentSeason}&player_ids[]=${statsId}`)
         .then(res => res.json())
         .then((dataRaw) => {
@@ -36,10 +38,11 @@ export const renderPlayerDetails = () => {
                     fg_pct: player.fg_pct
                 };
             });
-            console.log(playerStats)
+            console.log(playerStats);
         })
         .catch(err => console.error(err));
     }
+
     function getPlayerInfo() {
         fetch('http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/mia/roster')
         .then(res => res.json())
@@ -53,23 +56,69 @@ export const renderPlayerDetails = () => {
                     position: athlete.position.name,
                     height: athlete.displayHeight.slice(0,4).replace(" ",""),
                     weight: athlete.weight,
-                    dob: athlete.dateOfBirth.slice(0,10).replaceAll("-","/"),
+                    age: athlete.age,
+                    experience: athlete.experience.years,
                     photoUrl: `https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/${athlete.id}.png&w=350&h=254`,
                 };
             });
             filterForPlayer();
         })
+        .then(renderPlayerCard(filteredPlayer))
         .catch(err => console.error(err));
     }
+
     function filterForPlayer() {
         filteredPlayer = miamiHeatRoster.filter((athlete) => {
             return (
-                (athlete.name === name) && (athlete.lastName = lastname)
+                (athlete.name === name) && (athlete.lastName === lastname)
             );
         });
         console.log(filteredPlayer);
     };
 
     getPlayerStats()
-    getPlayerInfo()
-};
+    getPlayerInfo() */
+
+
+    let playerInfo = [];
+
+    const dupa = () => {
+        Promise.all(
+            [fetch(`https://www.balldontlie.io/api/v1/season_averages?season=${currentSeason}&player_ids[]=${statsId}`), 
+            fetch('http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/mia/roster')])
+            .then(async (values) => {
+                // Stats
+                const firstObj = await values[0].json();
+                // Athletes
+                const secondObj = await values[1].json();
+
+                const filteredAthletes = secondObj.athletes.filter((athlete) => athlete.firstName === name && athlete.lastName === lastname)
+
+                const mergedData = {...firstObj.data[0], ...filteredAthletes[0]};
+                return mergedData;
+                })
+            .then((data) => {
+                
+                playerInfo = {
+                    name: data.firstName,
+                    age: data.age
+                }
+                
+                console.log(playerInfo);
+
+                // const mappedObject = {
+                //     name: firstName,
+                //     age,
+                //     position: 
+                // }
+
+                
+            }
+                // do something with data
+            )
+            .then()
+
+    }
+
+    dupa();
+}

@@ -98,7 +98,7 @@ header button {
     color: var(--text-first);
 }
 
-/* ---- PLAYERS CARDS ---- */
+/* ---- athleteS CARDS ---- */
 
 #roster-container {
     margin: 0 auto;
@@ -113,7 +113,7 @@ ul {
     list-style: none;
 }
 
-.player-photo {
+.athlete-photo {
     -webkit-filter: grayscale(100%);
     filter: grayscale(70%);
     aspect-ratio: 160/115;
@@ -121,14 +121,14 @@ ul {
     z-index: 1;
 }
 
-.player-card:hover .player-photo {
+.athlete-card:hover .athlete-photo {
     -webkit-filter: grayscale(0%);
     filter: grayscale(0%);
-    animation-name: playerColor;
+    animation-name: athleteColor;
     animation-duration: 0.3s;
 }
 
-@keyframes playerColor {
+@keyframes athleteColor {
     0% {
         filter: grayscale(60%);
     }
@@ -164,24 +164,24 @@ li a:hover {
     cursor: pointer;
 }
 
-.player-card {
+.athlete-card {
     height: 100%;
     border-radius: 10px;
     background-color: var(--darker);
     font-family: 'Bebas Neue', cursive;   
 }
 
-.player-name {
+.athlete-name {
     padding-top: 20px;
     font-size: 30px;
 }
 
-.player-position {
+.athlete-position {
     margin-bottom: 20px;
     font-size: 20px;
 }
 
-.player-jersey {
+.athlete-jersey {
     position: absolute;
     right: 15px;
     top: 10px;
@@ -196,7 +196,7 @@ li a:hover {
     padding-top: 20px;
 }
 
-.player-card:hover .player-jersey {
+.athlete-card:hover .athlete-jersey {
     color: var(--text-first);
     animation-name: colorChangeJersey;
     animation-duration: 0.7s;
@@ -207,7 +207,7 @@ li a:hover {
     to {color: var(--text-first)}
 }
 
-.player-card:hover .card-text-container {
+.athlete-card:hover .card-text-container {
     background-color: var(--secondary);
     color: var(--darker);
     animation-name: colorChangeCardText;

@@ -31,16 +31,13 @@ export const renderRoster = () => {
                     lastName: athlete.lastName,
                     jersey: athlete.jersey,
                     position: athlete.position.name,
-                    height: athlete.displayHeight.slice(0,4).replace(" ",""),
-                    weight: athlete.weight,
-                    dob: athlete.dateOfBirth.slice(0,10).replaceAll("-","/"),
                     photoUrl: `https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/${athlete.id}.png&w=350&h=254`,
                 };
             });
     
             console.log(miamiHeatRoster);
             Promise.all(miamiHeatRoster.map(getPlayerId))
-            .then(() => {renderAthletesList(miamiHeatRoster)} );
+            .then(() => {renderAthletesList(miamiHeatRoster)});
         }) 
         .catch(err => console.error(err));
     } 
