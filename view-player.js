@@ -3,10 +3,6 @@ import { renderPlayerCard } from "./help-functions.js";
 export const renderPlayerDetails = () => {
 
     let currentSeason;
-    
-    let playerStats = [];
-    let miamiHeatRoster = [];
-    let filteredPlayer = [];
 
     // getting current NBA season year
     var date = new Date();
@@ -97,27 +93,36 @@ export const renderPlayerDetails = () => {
                 const mergedData = {...firstObj.data[0], ...filteredAthletes[0]};
                 return mergedData;
                 })
-            .then((data) => {
+            .then((values) => {
                 
                 playerInfo = {
-                    name: data.firstName,
-                    age: data.age
+                    id: values.id,
+                    name: values.firstName,
+                    lastName: values.lastName,
+                    jersey: values.jersey,
+                    position: values.position.name,
+                    height: values.displayHeight.slice(0,4).replace(" ",""),
+                    weight: values.weight,
+                    age: values.age,
+                    experience: values.experience.years,
+                    photoUrl: `https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/${values.id}.png&w=350&h=254`,
+                    gp: values.games_played,
+                    pts: values.pts,
+                    ast: values.ast,
+                    reb: values.reb,
+                    stl: values.stl,
+                    blk: values.blk,
+                    fg_pct: values.fg_pct
                 }
                 
-                console.log(playerInfo);
+                renderPlayerCard(playerInfo);
 
                 // const mappedObject = {
                 //     name: firstName,
                 //     age,
                 //     position: 
                 // }
-
-                
-            }
-                // do something with data
-            )
-            .then()
-
+            })
     }
 
     dupa();

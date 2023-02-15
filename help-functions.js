@@ -50,24 +50,23 @@ const createAthleteCardElement = (athlete) => {
     return athleteCardElem;
 }
 
-export const renderPlayerCard = (filteredPlayer, playerStats) => {
+export const renderPlayerCard = (playerInfo) => {
     const rootElement = document.querySelector("#roster-container");
     rootElement.innerHTML = "";
-    rootElement.appendChild(createPlayerCardInfo(filteredPlayer));
-    rootElement.appendChild(createPlayerCardInfo(playerStats));
+    rootElement.appendChild(createPlayerCardInfo(playerInfo));
 };
 
-const createPlayerCardInfo = (filteredPlayer) => {
+const createPlayerCardInfo = (playerInfo) => {
     const playerCardElem = document.createElement("div");
     playerCardElem.classList.add("player-card");
 
     const playerImg = document.createElement("img");
     playerImg.classList.add("player-photo");
-    playerImg.src = filteredPlayer.photoUrl;
+    playerImg.src = playerInfo.photoUrl;
     playerCardElem.appendChild(playerImg);
 
     const playerName = document.createElement("strong");
-    playerName.innerText = filteredPlayer.name;
+    playerName.innerText = playerInfo.name;
     playerCardElem.appendChild(playerName);
 
     return playerCardElem;
