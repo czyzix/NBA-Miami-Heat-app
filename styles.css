@@ -104,15 +104,15 @@ header button {
 
 #player-container {
     margin: 0 auto;
-    max-width: 500px;
+    max-width: 1300px;
 }
 
 .player-card {
     display: flex;
-    flex-direction: column;
-    background-color: red;
+    flex-direction: row;
+    background-color: cyan;
     height: 100%;
-    max-width: 500px;
+    max-width: 100%;
 }
 
 /* ---- ATHLETES CARDS ---- */
