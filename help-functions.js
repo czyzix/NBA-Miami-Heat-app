@@ -56,18 +56,78 @@ export const renderPlayerCard = (playerInfo) => {
     rootElement.appendChild(createPlayerCardInfo(playerInfo));
 };
 
+const createInfoElem = (label, value) => {
+    const infoElem = document.createElement("p");
+    infoElem.innerText = `${label}${value}`;
+    return infoElem;
+};
+
+const createStatElem = (label, value) => {
+    const statElem = document.createElement("div");
+    statElem.classList.add("stat-elem");
+    
+    const labelElem= document.createElement("p");
+    labelElem.innerText = `${label}`;
+    const valueElem= document.createElement("p");
+    valueElem.innerText = `${value}`;
+
+    statElem.appendChild(labelElem);
+    statElem.appendChild(valueElem);
+
+    return statElem;
+};
+
 const createPlayerCardInfo = (playerInfo) => {
     const playerCardElem = document.createElement("div");
     playerCardElem.classList.add("player-card");
 
-    const playerImg = document.createElement("img");
-    playerImg.classList.add("player-photo");
-    playerImg.src = playerInfo.photoUrl;
-    playerCardElem.appendChild(playerImg);
+    // Player bio
+    const playerBio = document.createElement("div");
+    playerCardElem.appendChild(playerBio)
 
-    const playerName = document.createElement("strong");
-    playerName.innerText = playerInfo.name;
-    playerCardElem.appendChild(playerName);
+    const miaLogo = document.createElement("img");
+    miaLogo.src = "imgs/mialogo.png";
+    playerCardElem.appendChild(miaLogo)
+
+    const playerJersey = playerBio.appendChild(createInfoElem(playerInfo.jersey,""));
+    playerJersey.classList.add("bio-text");
+
+    const playerName = playerBio.appendChild(createInfoElem(playerInfo.name,""));
+    playerName.classList.add("bio-text");
+
+    const playerLastName = document.createElement("strong");
+    playerLastName.innerText = playerInfo.lastName;
+    playerBio.appendChild(playerLastName);
+
+    const playerPosition = playerBio.appendChild(createInfoElem(playerInfo.position,""));
+    playerPosition.classList.add("player-position");
+    
+    playerBio.appendChild(createInfoElem("AGE: ", playerInfo.age));
+    playerBio.appendChild(createInfoElem("HEIGHT: ", playerInfo.height));
+    playerBio.appendChild(createInfoElem("WEIGHT: ", playerInfo.weight));
+
+    //Player photo
+    const playerPhoto = document.createElement("img");
+    playerPhoto.src = playerInfo.photoUrl;
+    playerCardElem.appendChild(playerPhoto);
+
+    //Player stats
+    const playerStatsContainer = document.createElement("div");
+    playerStatsContainer.classList.add("stats-container");
+    playerCardElem.appendChild(playerStatsContainer);
+
+    playerStatsContainer.appendChild(createInfoElem("AVERAGE STATS",""));
+
+    const stats = document.createElement("div");
+    stats.classList.add("stats");
+    playerStatsContainer.appendChild(stats);
+
+    stats.appendChild(createStatElem("FG%", playerInfo.fg_pct));
+    stats.appendChild(createStatElem("PTS", playerInfo.pts));
+    stats.appendChild(createStatElem("AST", playerInfo.ast));
+    stats.appendChild(createStatElem("REB", playerInfo.reb));
+    stats.appendChild(createStatElem("STL", playerInfo.stl));
+    stats.appendChild(createStatElem("BLK", playerInfo.blk));
 
     return playerCardElem;
 };
