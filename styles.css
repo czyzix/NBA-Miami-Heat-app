@@ -374,7 +374,7 @@ body.dark .icon {
     }
     
     #stats-container {
-        margin-top: 20px;
+        margin-top: 12px;
         grid-column: span 2;
     }
 
@@ -428,6 +428,7 @@ body.dark .icon {
     }
     
     #stats-container {
+        margin-top: -10px;
         scale: 0.8;
     }
 
