@@ -43,15 +43,15 @@ export const renderPlayerDetails = () => {
                     jersey: values.jersey,
                     position: values.position.name,
                     height: values.displayHeight.slice(0,4).replace(" ","")+'"',
-                    weight: values.weight,
+                    weight: values.weight + " lbs",
                     age: values.age,
                     photoUrl: `https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/${values.id}.png&w=350&h=254`,
-                    pts: values.pts,
-                    ast: values.ast,
-                    reb: values.reb,
-                    stl: values.stl,
-                    blk: values.blk,
-                    fg_pct: values.fg_pct
+                    pts: Math.round(values.pts * 10) / 10,
+                    ast: Math.round(values.ast * 10) / 10,
+                    reb: Math.round(values.reb * 10) / 10,
+                    stl: Math.round(values.stl * 10) / 10,
+                    blk: Math.round(values.blk * 10) / 10,
+                    fg_pct: Math.round(values.fg_pct * 100)
                 }
                 
                 renderPlayerCard(playerInfo);
