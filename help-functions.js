@@ -68,8 +68,10 @@ const createStatElem = (label, value) => {
     
     const labelElem= document.createElement("p");
     labelElem.innerText = `${label}`;
+    labelElem.classList.add("label-elem");
     const valueElem= document.createElement("p");
     valueElem.innerText = `${value}`;
+    valueElem.classList.add("value-elem");
 
     statElem.appendChild(labelElem);
     statElem.appendChild(valueElem);
@@ -83,24 +85,25 @@ const createPlayerCardInfo = (playerInfo) => {
 
     // Player bio
     const playerBio = document.createElement("div");
+    playerBio.setAttribute("id", "player-bio");
     playerCardElem.appendChild(playerBio)
 
     const miaLogo = document.createElement("img");
     miaLogo.src = "imgs/mialogo.png";
+    miaLogo.setAttribute("id", "mia-logo-card");
     playerCardElem.appendChild(miaLogo)
 
-    const playerJersey = playerBio.appendChild(createInfoElem(playerInfo.jersey,""));
-    playerJersey.classList.add("bio-text");
+    playerBio.appendChild(createInfoElem(playerInfo.jersey,""));
 
-    const playerName = playerBio.appendChild(createInfoElem(playerInfo.name,""));
-    playerName.classList.add("bio-text");
+    playerBio.appendChild(createInfoElem(playerInfo.name,""));
 
     const playerLastName = document.createElement("strong");
+    playerLastName.classList.add("bio-text-bold");
     playerLastName.innerText = playerInfo.lastName;
     playerBio.appendChild(playerLastName);
 
     const playerPosition = playerBio.appendChild(createInfoElem(playerInfo.position,""));
-    playerPosition.classList.add("player-position");
+    playerPosition.classList.add("last");
     
     playerBio.appendChild(createInfoElem("AGE: ", playerInfo.age));
     playerBio.appendChild(createInfoElem("HEIGHT: ", playerInfo.height));
@@ -109,17 +112,21 @@ const createPlayerCardInfo = (playerInfo) => {
     //Player photo
     const playerPhoto = document.createElement("img");
     playerPhoto.src = playerInfo.photoUrl;
+    playerPhoto.setAttribute("id", "player-photo");
     playerCardElem.appendChild(playerPhoto);
 
     //Player stats
     const playerStatsContainer = document.createElement("div");
-    playerStatsContainer.classList.add("stats-container");
+    playerStatsContainer.setAttribute("id","stats-container");
     playerCardElem.appendChild(playerStatsContainer);
 
-    playerStatsContainer.appendChild(createInfoElem("AVERAGE STATS",""));
+    const averageStats = document.createElement("strong");
+    averageStats.innerText = "CURRENT SEASON AVERAGE STATS";
+    averageStats.setAttribute("id", "stats-h");
+    playerStatsContainer.appendChild(averageStats);
 
     const stats = document.createElement("div");
-    stats.classList.add("stats");
+    stats.setAttribute("id","stats");
     playerStatsContainer.appendChild(stats);
 
     stats.appendChild(createStatElem("FG%", playerInfo.fg_pct));

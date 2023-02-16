@@ -54,6 +54,7 @@ header {
 
 #theme-mode {
     position: relative;
+    font-size: 19px;
 }
 
 header button {
@@ -103,16 +104,102 @@ header button {
 /* ---- PLAYER INFO CARD ----*/
 
 #player-container {
-    margin: 0 auto;
-    max-width: 1300px;
+    margin: 40px auto;
+    max-width: 1000px;
 }
 
 .player-card {
-    display: flex;
-    flex-direction: row;
-    background-color: cyan;
-    height: 100%;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: var(--darker);
+    color: var(--text-first);
     max-width: 100%;
+    margin: 0 50px;
+    padding: 40px;
+    border-radius: 20px;
+    z-index: -1;
+    overflow: hidden;
+}
+
+#player-bio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: -10px;
+}
+
+#player-bio p {
+    font-size: 20px;
+}
+
+.bio-text {
+    font-size: 25px;
+}
+
+.last {
+    margin-bottom: 20px;
+}
+
+.bio-text-bold {
+    font-size: 50px;
+    margin: -7px 0 -10px;
+}
+
+#mia-logo-card {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    opacity: 0.3;
+    z-index: -1;
+    top: 30px;;
+    left: 25%;
+}
+
+#player-photo {
+    aspect-ratio: 160/115;
+    margin: 0 auto;
+}
+
+#stats-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#stats-h {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#stats {
+    width: 255px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.stat-elem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 32%;
+    height: 53%;
+    border-radius: 10px;
+    background-color: var(--primary);
+}
+
+.label-elem {
+    margin-top: 8px;
+    font-size: 20px;
+}
+
+.value-elem {
+    font-size: 35px;
+    font-weight: 700;
 }
 
 /* ---- ATHLETES CARDS ---- */
@@ -185,7 +272,6 @@ li a:hover {
     height: 100%;
     border-radius: 10px;
     background-color: var(--darker);
-    font-family: 'Bebas Neue', cursive;   
 }
 
 .athlete-name {
@@ -282,10 +368,70 @@ body.dark .icon {
     }
 }
 
+@media only screen and (max-width: 900px) {
+    .player-card {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    #stats-container {
+        margin-top: 20px;
+        grid-column: span 2;
+    }
+
+    #stats {
+        width: 500px;
+    }
+
+    #mia-logo-card {
+        left: 40%;
+    }
+}
+
 @media only screen and (max-width: 830px) {
     ul {
         grid-template-columns: 1fr 1fr;
     }
+}
+
+@media only screen and (max-width: 650px) {
+    
+    .player-card {
+        grid-template-columns: 100%;
+        padding: 10px 0;
+        padding-bottom: 30px;
+    }
+
+    #stats-container {
+        margin-top: 10px;
+        grid-column: span 1;
+    }
+
+    #stats {
+        width: 255px;
+    }
+
+    #mia-logo-card {
+        top: 22%;
+        left: 20%;
+    }
+
+    #player-photo {
+        max-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .player-card {
+        grid-template-columns: 100%;
+        padding: 10px 0;
+        padding-bottom: 10px;
+    }
+    
+    #stats-container {
+        scale: 0.8;
+    }
+
+   
 }
 
 @media only screen and (max-width: 550px) {
