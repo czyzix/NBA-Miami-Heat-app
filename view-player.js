@@ -60,7 +60,7 @@ export const renderPlayerDetails = () => {
             .catch(backToRoster());
 
             function backToRoster() {
-                window.location.href = "/";
+                window.location.href = "https://czyzix.github.io/NBA-Miami-Heat-app/";
                 alert('Sorry, there are no available stats for this player')
             };
     }
