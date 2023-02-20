@@ -57,7 +57,7 @@ export const renderPlayerDetails = () => {
                 renderPlayerCard(playerInfo);
                 console.log(playerInfo);
             })
-            .catch(backToRoster());
+            .catch(error => {backToRoster()});
 
             function backToRoster() {
                 window.location.href = "https://czyzix.github.io/NBA-Miami-Heat-app/";
