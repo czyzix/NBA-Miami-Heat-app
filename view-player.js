@@ -54,7 +54,11 @@ export const renderPlayerDetails = () => {
                     fg_pct: Math.round(values.fg_pct * 100)
                 }
                 
-                renderPlayerCard(playerInfo);
+                if (isNaN(playerInfo.pts)) {
+                    backToRoster()
+                } else {
+                    renderPlayerCard(playerInfo);
+                }
                 console.log(playerInfo);
             })
             .catch((error) => {
