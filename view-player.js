@@ -57,6 +57,12 @@ export const renderPlayerDetails = () => {
                 renderPlayerCard(playerInfo);
                 console.log(playerInfo);
             })
+            .catch(backToRoster());
+
+            function backToRoster() {
+                window.location.href = "/";
+                alert('Sorry, there are no available stats for this player')
+            };
     }
 
     getPlayerInfo();
