@@ -20,7 +20,7 @@ export const renderRoster = () => {
     /* ---- FUNCTIONS ---- */
     
     function getMiamiRoster() {
-        fetch('http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/mia/roster')
+        fetch('https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/mia/roster')
         .then(res => res.json())
         .then((dataRaw) => {
     
