@@ -7,9 +7,9 @@ import { renderRoster } from "./view-roster.js";
 import { renderPlayerDetails } from "./view-player.js";
 
 if (window.location.search.includes("?athlete=")) {
-    document.querySelector(".filters").classList.add("hide");
     renderPlayerDetails();
 } else {
+    document.querySelector(".filters").classList.remove("hide");
     renderRoster();
 }
 
