@@ -26,7 +26,7 @@ body::after {
     height: 43px;
 }
 
-/* ---- HEADER ---- */
+/* ---- HEADER / FOOTER ---- */
 
 h1 a, h2 a {
     color: var(--text-first);
