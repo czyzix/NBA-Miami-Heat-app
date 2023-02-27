@@ -19,11 +19,23 @@ export const renderRoster = () => {
     
     /* ---- FUNCTIONS ---- */
     
+    const loaderElem = document.getElementById("loader");
+
+    function showLoader() {
+        loaderElem.style.display = "flex"
+    };
+
+    function hideLoader() {
+        loaderElem.style.display = "none"
+    };
+
     function getMiamiRoster() {
+        showLoader()
         fetch('https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/mia/roster')
         .then(res => res.json())
         .then((dataRaw) => {
-    
+
+            hideLoader();
             miamiHeatRoster = dataRaw.athletes.map((athlete) => {
                 return {
                     id: athlete.id,
@@ -34,26 +46,31 @@ export const renderRoster = () => {
                     photoUrl: `https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/${athlete.id}.png&w=350&h=254`,
                 };
             });
-    
-            console.log(miamiHeatRoster);
+
             Promise.all(miamiHeatRoster.map(getPlayerId))
             .then(() => {renderAthletesList(miamiHeatRoster)});
         }) 
         .catch(err => console.error(err));
-    } 
+    };
     
     function getPlayerId(athlete) {
-        return fetch(`https://www.balldontlie.io/api/v1/players?search=${athlete.lastName}`)
+        const searchForSpecificPlayer = `https://www.balldontlie.io/api/v1/players?search=${athlete.lastName}`
+        
+        return fetch(searchForSpecificPlayer)
         .then(res => res.json())
         .then((dataRaw) => {
             for (let i = 0; i <= dataRaw.data.length; i++) {
                 if (dataRaw.data[i]) {
-                    if ((dataRaw.data[i].first_name === athlete.name) && (dataRaw.data[i].team.abbreviation === "MIA")) {
-                        return athlete.statsId = dataRaw.data[i].id	
+                    
+                    const playerFirstNameAndTeamNameMatches = (dataRaw.data[i].first_name === athlete.name) && (dataRaw.data[i].team.abbreviation === "MIA");
+
+                    if (playerFirstNameAndTeamNameMatches) {
+                        athlete.statsId = dataRaw.data[i].id	
                     };
                 };
             };
-        });
+        })
+        .catch(err => console.error(err));
     };
     
     function filterMiamiRoster() {
@@ -68,4 +85,4 @@ export const renderRoster = () => {
     };
     
     getMiamiRoster();
-}
+};
