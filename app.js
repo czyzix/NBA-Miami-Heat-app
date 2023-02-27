@@ -1,17 +1,15 @@
-/* important links:
-'https://www.balldontlie.io/api/v1/season_averages?season=2022&player_ids[]=79' - athlete stats
-`https://www.balldontlie.io/api/v1/players?search=butler` - search by lastname
-`http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/mia/roster` - miami heat roster */
-
 import { renderRoster } from "./view-roster.js";
 import { renderPlayerDetails } from "./view-player.js";
 
-if (window.location.search.includes("?athlete=")) {
+const currentViewIsPlayer = window.location.search.includes("?athlete=");
+
+if (currentViewIsPlayer) {
     renderPlayerDetails();
 } else {
-    document.querySelector(".filters").classList.remove("hide");
+    // Show filters elements 
+    document.querySelector(".filters").classList.remove("hide"); 
     renderRoster();
-}
+};
 
 /* ---- DARK/LIGHT MODE ---- */
 
