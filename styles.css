@@ -26,6 +26,14 @@ body::after {
     height: 43px;
 }
 
+#fetch-failed {
+    display: none;
+    justify-content: center;
+    margin-top: 100px;
+    color: var(--text-first);
+    font-size: 23px;
+}
+
 /* ---- HEADER / FOOTER ---- */
 
 h1 a, h2 a {
