@@ -1,6 +1,5 @@
 export const renderAthletesList = (miamiHeatRoster) => {
     const rootElement = document.querySelector("#roster-container");
-    rootElement.innerHTML = "";
     rootElement.appendChild(createAthletesListElement(miamiHeatRoster));
 };
 
@@ -44,15 +43,13 @@ const createAthleteCardElement = (athlete) => {
     athletePosition.classList.add("athlete-position");
     athleteTextElem.appendChild(athletePosition);
 
-    
     athleteCardElem.appendChild(anchorElement);
 
     return athleteCardElem;
-}
+};
 
 export const renderPlayerCard = (playerInfo) => {
     const rootElement = document.querySelector("#player-container");
-    rootElement.innerHTML = "";
     rootElement.appendChild(createPlayerCardInfo(playerInfo));
 };
 

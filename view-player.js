@@ -3,26 +3,31 @@ import { renderPlayerCard } from "./help-functions.js";
 export const renderPlayerDetails = () => {
 
     let currentSeason;
-    let params = new URLSearchParams(window.location.search);
-    let statsId = params.get("athlete");
-    let name = params.get("name");
-    let lastname = params.get("lastname");
-    let playerInfo = [];
+    const params = new URLSearchParams(window.location.search);
+    const statsId = params.get("athlete");
+    const name = params.get("name");
+    const lastname = params.get("lastname");
+    let playerInfo;
 
-    // getting current NBA season year
-    var date = new Date();
-    var current_month = date.getMonth() + 1
+    // Getting current NBA season start year
+    const date = new Date();
+    const current_month = date.getMonth() + 1
 
-    if (current_month <= 10) {
+    const newSeasonHasNotStarted = current_month <= 10;
+
+    if (newSeasonHasNotStarted) {
         currentSeason = new Date().getFullYear() - 1
     } else {
         currentSeason = new Date().getFullYear()
     };
 
+    const fetchPlayerStats = `https://www.balldontlie.io/api/v1/season_averages?season=${currentSeason}&player_ids[]=${statsId}`;
+    const fetchMiamiHeatRoster = 'http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/mia/roster';
+
     const getPlayerInfo = () => {
         Promise.all(
-            [fetch(`https://www.balldontlie.io/api/v1/season_averages?season=${currentSeason}&player_ids[]=${statsId}`), 
-            fetch('http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/mia/roster')])
+            [fetch(fetchPlayerStats), 
+            fetch(fetchMiamiHeatRoster)])
             .then(async (values) => {
                 // Stats
                 const firstObj = await values[0].json();
@@ -54,12 +59,13 @@ export const renderPlayerDetails = () => {
                     fg_pct: Math.round(values.fg_pct * 100)
                 }
                 
-                if (isNaN(playerInfo.pts)) {
+                const thereIsNoPlayerStats = isNaN(playerInfo.pts);
+
+                if (thereIsNoPlayerStats) {
                     backToRoster()
                 } else {
                     renderPlayerCard(playerInfo);
                 }
-                console.log(playerInfo);
             })
             .catch((error) => {
                 backToRoster()
@@ -73,4 +79,4 @@ export const renderPlayerDetails = () => {
     }
 
     getPlayerInfo();
-}
+};
