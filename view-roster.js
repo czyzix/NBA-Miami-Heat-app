@@ -17,7 +17,7 @@ export const renderRoster = () => {
         filterMiamiRoster();
     });
     
-    /* ---- FUNCTIONS ---- */
+    /* ---- LOADER ---- */
     
     const loaderElem = document.getElementById("loader");
 
@@ -36,6 +36,8 @@ export const renderRoster = () => {
                 document.getElementById('roster-container').innerHTML = "";
                 document.querySelector(".filters").classList.add("hide");
     };
+
+     /* ---- FUNCTIONS ---- */
 
     function getMiamiRoster() {
         showLoader()
