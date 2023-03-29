@@ -1,5 +1,6 @@
 export const renderAthletesList = (miamiHeatRoster) => {
     const rootElement = document.querySelector("#roster-container");
+    rootElement.innerHTML = "";
     rootElement.appendChild(createAthletesListElement(miamiHeatRoster));
 };
 
