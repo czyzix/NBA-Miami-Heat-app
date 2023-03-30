@@ -1,14 +1,39 @@
+import { renderRoster } from "./view-roster.js";
+import { renderPlayerDetails } from "./view-player.js";
 
-fetch('https://www.balldontlie.io/api/v1/players?search=butler')
-	.then(response => response.json())
-	.then(response => console.log(response))
-	.catch(err => console.error(err));
+const currentViewIsPlayer = window.location.search.includes("?athlete=");
 
+if (currentViewIsPlayer) {
+    renderPlayerDetails();
+} else {
+    // Show filters elements 
+    document.querySelector(".filters").classList.remove("hide"); 
+    renderRoster();
+};
 
+/* ---- DARK/LIGHT MODE ---- */
 
+const switchButton = document.querySelector("#theme-btn");
+let theme = localStorage.getItem("theme");
 
-//'https://www.balldontlie.io/api/v1/season_averages?season=2022&player_ids[]=79'
-//https://www.balldontlie.io/api/v1/players?search=butler
+switchButton.addEventListener("click", () => {
+    if (theme === "light") {
+        document.querySelector("body").classList.remove("light");
+        document.querySelector("body").classList.add("dark");
+        theme = "dark";
+    } else {
+        document.querySelector("body").classList.remove("dark");
+        document.querySelector("body").classList.add("light");
+        theme = "light";
+    }
 
+    localStorage.setItem("theme", theme);
+});
 
-//http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/Miami/roster - GIGA WAŻNE
+if (theme === "dark") {
+    document.querySelector("body").classList.add("dark");
+};
+
+if (theme === "light") {
+    document.querySelector("body").classList.add("light");
+};

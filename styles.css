@@ -1,0 +1,534 @@
+:root {
+    --lighter: rgb(41, 41, 41);
+    --darker: rgb(24, 24, 24);
+    --text-second: rgb(0,0,0);
+    --text-first: rgb(255,255,255);
+    --shadow: rgb(0,0,0);
+    --secondary: rgb(249, 160, 27);
+    --primary: rgb(152, 0, 46);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--lighter);
+    font-family: 'Bebas Neue', cursive;
+    min-height: 100vh;
+}
+
+body::after {
+    content: "";
+    display: block;
+    height: 43px;
+}
+
+#fetch-failed {
+    display: none;
+    justify-content: center;
+    margin-top: 100px;
+    color: var(--text-first);
+    font-size: 23px;
+}
+
+/* ---- HEADER / FOOTER ---- */
+
+h1 a, h2 a {
+    color: var(--text-first);
+    text-decoration: none;
+}
+
+header, footer {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: var(--darker);
+    color: var(--text-first);
+    box-shadow: 0px 0px 15px 0px var(--shadow);
+}
+
+footer {
+    position: sticky;
+    top: 100%;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 43px;
+    font-size: 12px;
+    z-index: 1;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 50px;
+    max-width: 1300px;
+}
+
+#mia-logo {
+    width: 80px;
+}
+
+#color-mode-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75px;
+}
+
+#theme-mode {
+    position: relative;
+    font-size: 19px;
+}
+
+header button {
+    cursor: pointer;
+    outline-width: 5px;
+    position: relative;
+    border-radius: 40px;
+    background-color: var(--darker);
+    border: solid 2px var(--primary);
+    width: 55px;
+    height: 30px;
+}
+
+.icon {
+    display: block;
+    position: relative;
+    content: "";
+    background-color: var(--primary);
+    border-radius: 100%;
+    height: 20px;
+    width: 20px;
+    margin-left: 4px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+/* ---- FILTERS ---- */
+
+.filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 30px auto;
+    padding: 0 50px;
+    max-width: 1300px;
+}
+
+#query, #position {
+    display: block;
+    background-color: var(--text-first);
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: var(--darker);
+    color: var(--text-first);
+}
+
+/* ---- LOADER ---- */
+
+#loader {
+    position: relative;
+    display: none;
+    margin: 20vh auto 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    animation: rotate 1s linear infinite
+  }
+  
+  #loader::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 7px solid var(--primary);
+    animation: prixClipFix 2s linear infinite ;
+  }
+
+  @keyframes rotate {
+    100%   {transform: rotate(360deg)}
+  }
+
+  @keyframes prixClipFix {
+      0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+      25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+      50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+      75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+      100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+  }
+
+/* ---- PLAYER INFO CARD ----*/
+
+#player-container {
+    margin: 40px auto;
+    max-width: 1000px;
+}
+
+.player-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: var(--darker);
+    color: var(--text-first);
+    max-width: 100%;
+    margin: 0 50px;
+    padding: 40px;
+    border-radius: 20px;
+    z-index: -1;
+    overflow: hidden;
+}
+
+#player-bio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: -10px;
+}
+
+#player-bio p {
+    font-size: 20px;
+}
+
+.bio-text {
+    font-size: 25px;
+}
+
+.last {
+    margin-bottom: 20px;
+}
+
+.bio-text-bold {
+    font-size: 50px;
+    margin: -7px 0 -10px;
+}
+
+#mia-logo-card {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    opacity: 0.3;
+    z-index: -1;
+    top: 30px;;
+    left: 25%;
+}
+
+#player-photo {
+    aspect-ratio: 160/115;
+    margin: 0 auto;
+}
+
+#stats-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#stats-h {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#stats {
+    width: 255px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.stat-elem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 32%;
+    height: 53%;
+    border-radius: 10px;
+    background-color: var(--primary);
+}
+
+.label-elem {
+    margin-top: 8px;
+    font-size: 20px;
+}
+
+.value-elem {
+    font-size: 35px;
+    font-weight: 700;
+}
+
+/* ---- ATHLETES CARDS ---- */
+
+#roster-container {
+    margin: 0 auto;
+    padding: 0 50px;
+    max-width: 1300px;
+}
+
+ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 30px;
+    list-style: none;
+}
+
+.athlete-photo {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(70%);
+    aspect-ratio: 160/115;
+    width: 140%;
+    z-index: 1;
+}
+
+.athlete-card:hover .athlete-photo {
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%);
+    animation-name: athleteColor;
+    animation-duration: 0.3s;
+}
+
+@keyframes athleteColor {
+    0% {
+        filter: grayscale(60%);
+    }
+    25% {
+        filter: grayscale(45%);
+    }
+    50% {
+        filter: grayscale(30%);
+    }
+    75% {
+        filter: grayscale(15%);
+    }
+    100% {
+        filter: grayscale(00%);
+    }
+}
+
+li {
+    overflow: hidden;
+}
+
+li a {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-first);
+    text-decoration: none;
+}
+
+li a:hover {
+    cursor: pointer;
+}
+
+.athlete-card {
+    height: 100%;
+    border-radius: 10px;
+    background-color: var(--darker);
+}
+
+.athlete-name {
+    padding-top: 20px;
+    font-size: 30px;
+}
+
+.athlete-position {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.athlete-jersey {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 60px;
+    color: var(--lighter);
+}
+
+.card-text-container {
+    background-color: var(--primary);
+    text-align: center;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.athlete-card:hover .athlete-jersey {
+    color: var(--text-first);
+    animation-name: colorChangeJersey;
+    animation-duration: 0.7s;
+}
+
+@keyframes colorChangeJersey {
+    from {color: var(--lighter);}
+    to {color: var(--text-first)}
+}
+
+.athlete-card:hover .card-text-container {
+    background-color: var(--secondary);
+    color: var(--darker);
+    animation-name: colorChangeCardText;
+    animation-duration: 0.7s;
+}
+
+@keyframes colorChangeCardText {
+    from {color: var(--text-first);}
+    to {color: var(--darker)}
+    from {background-color: var(--primary)};
+    to {background-color: var(--secondary)};
+}
+
+/* ---- LIGHT MODE ---- */
+
+body.light {
+    --lighter: rgb(255, 255, 255);
+    --darker: rgb(238, 238, 238);
+    --text-second: rgb(255,255,255);
+    --text-first: rgb(0,0,0);
+    --shadow: rgb(153, 153, 153);
+    --secondary: rgb(152, 0, 46);
+    --primary: rgb(249, 160, 27);
+}
+
+body.light .icon {
+    transform: translateX(25px);
+}
+
+/* ---- DARK MODE ---- */
+
+body.dark {
+    --lighter: rgb(41, 41, 41);
+    --darker: rgb(24, 24, 24);
+    --text-second: rgb(0,0,0);
+    --text-first: rgb(255,255,255);
+    --shadow: rgb(0,0,0);
+    --secondary: rgb(249, 160, 27);
+    --primary: rgb(152, 0, 46);
+}
+
+body.dark .icon {
+    transform: translateX(0px);
+}
+
+.hide {
+    display: none;
+}
+
+/* ---- MEDIA QUERIES ---- */
+
+@media only screen and (max-width: 1100px) {
+    ul {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .player-card {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    #stats-container {
+        margin-top: 12px;
+        grid-column: span 2;
+    }
+
+    #stats {
+        width: 500px;
+    }
+
+    #mia-logo-card {
+        left: 40%;
+    }
+}
+
+@media only screen and (max-width: 830px) {
+    ul {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    
+    .player-card {
+        grid-template-columns: 100%;
+        padding: 10px 0;
+        padding-bottom: 30px;
+    }
+
+    #stats-container {
+        margin-top: 10px;
+        grid-column: span 1;
+    }
+
+    #stats {
+        width: 255px;
+    }
+
+    #mia-logo-card {
+        top: 22%;
+        left: 20%;
+    }
+
+    #player-photo {
+        max-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .player-card {
+        grid-template-columns: 100%;
+        padding: 10px 0;
+        padding-bottom: 10px;
+    }
+    
+    #stats-container {
+        margin-top: -10px;
+        scale: 0.8;
+    }
+
+   
+}
+
+@media only screen and (max-width: 550px) {
+    
+    .header-content, .filters {
+        flex-direction: column;
+    }
+
+    #query {
+        margin-bottom: 10px;
+    }
+    
+    ul {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        --lighter: rgb(255, 255, 255);
+        --darker: rgb(238, 238, 238);
+        --text-second: rgb(255,255,255);
+        --text-first: rgb(0,0,0);
+        --shadow: rgb(153, 153, 153);
+        --secondary: rgb(152, 0, 46);
+        --primary: rgb(249, 160, 27);
+    }
+
+    .icon {
+        transform: translateX(25px);
+    }
+};
