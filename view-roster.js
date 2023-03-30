@@ -33,19 +33,20 @@ export const renderRoster = () => {
         const fetchFailedElem = document.getElementById("fetch-failed");
 
                 fetchFailedElem.style.display = "flex";
+                fetchFailedElem.innerText="failed to fetch data, try again in a minute"
                 document.getElementById('roster-container').innerHTML = "";
                 document.querySelector(".filters").classList.add("hide");
+                hideLoader();
     };
 
      /* ---- FUNCTIONS ---- */
 
     function getMiamiRoster() {
-        showLoader()
         fetch('https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/mia/roster')
         .then(res => res.json())
         .then((dataRaw) => {
 
-            hideLoader();
+            
             miamiHeatRoster = dataRaw.athletes.map((athlete) => {
                 return {
                     id: athlete.id,
@@ -58,6 +59,7 @@ export const renderRoster = () => {
             });
 
             Promise.all(miamiHeatRoster.map(getPlayerId))
+            .then(() => {hideLoader()})
             .then(() => {renderAthletesList(miamiHeatRoster)})
             .catch(fetchFailed);
         }) 
@@ -94,5 +96,6 @@ export const renderRoster = () => {
         renderAthletesList(filteredAthletes);
     };
     
+    showLoader();
     getMiamiRoster();
 };

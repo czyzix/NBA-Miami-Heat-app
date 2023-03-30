@@ -24,6 +24,18 @@ export const renderPlayerDetails = () => {
     const fetchPlayerStats = `https://www.balldontlie.io/api/v1/season_averages?season=${currentSeason}&player_ids[]=${statsId}`;
     const fetchMiamiHeatRoster = 'http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/mia/roster';
 
+    /* ---- LOADER ---- */
+    
+    const loaderElem = document.getElementById("loader");
+
+    function showLoader() {
+        loaderElem.style.display = "flex"
+    };
+
+    function hideLoader() {
+        loaderElem.style.display = "none"
+    };
+    
     const getPlayerInfo = () => {
         Promise.all(
             [fetch(fetchPlayerStats), 
@@ -67,16 +79,19 @@ export const renderPlayerDetails = () => {
                     renderPlayerCard(playerInfo);
                 }
             })
+            .then(() => {hideLoader()})
             .catch((error) => {
+                hideLoader()
                 backToRoster()
                 console.log(error)
             });
 
             function backToRoster() {
                 window.location.href = "https://czyzix.github.io/NBA-Miami-Heat-app/";
-                alert('Sorry, there are no available stats for this player')
+                alert('Sorry, right now there are no available stats for this player')
             };
     }
 
+    showLoader();
     getPlayerInfo();
 };
